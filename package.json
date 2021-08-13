@@ -2,15 +2,15 @@
     "name": "generator-dummy",
     "version": "0.0.1",
     "description": "A dummy generator for COSMO C++ projects.",
-    "homepage": "https://github.com/lucas-bremond/generator-cpp",
-    "bugs": "https://github.com/lucas-bremond/generator-cpp/issues",
+    "homepage": "https://github.com/adkmmm/generator-dummy",
+    "bugs": "https://github.com/adkmmm/generator-dummy/issues",
     "author": {
         "name": "Alex Deng"
     },
     "main": "generators/app/index.js",
     "repository": {
         "type": "git",
-        "url": "git://github.com/lucas-bremond/generator-cpp.git"
+        "url": "git://github.com:adkmmm/generator-dummy.git"
     },
     "dependencies": {
         "yeoman-generator": "^1.0.0",
