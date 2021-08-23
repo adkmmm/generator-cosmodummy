@@ -79,11 +79,11 @@ module.exports = class extends Generator
           message: 'Class name:',
           default: this.config.get('className')
         },
-        {
-          name: 'parentClassName',
-          message: 'Inherits from:',
-          default: this.config.get('parentClassName')
-        },
+        // {
+        //   name: 'parentClassName',
+        //   message: 'Inherits from:',
+        //   default: this.config.get('parentClassName')
+        // },
         {
           name: 'headerOnly',
           message: 'Header File only?',
@@ -152,12 +152,11 @@ module.exports = class extends Generator
 
     this.fs.copyTpl
     (
-      this.templatePath('include/MyClass.h'),
+      this.templatePath('DummyApp.h'),
       this.destinationPath(this.config.get('projectPath') + '/src/' + this.config.get('className') + '.h'),
       {
         year: this.year,
         date: this.date,
-        projectName: this.config.get('projectName'),
         projectPath: this.config.get('projectPath'),
         authorName: this.config.get('authorName'),
         authorEmail: this.config.get('authorEmail'),
@@ -174,15 +173,17 @@ module.exports = class extends Generator
 
     this.fs.copyTpl
     (
-      this.templatePath('src/MyClass.cpp'),
+      this.templatePath('DummyApp.cpp'),
       this.destinationPath(this.config.get('projectPath') + '/src/' + this.config.get('className') + '.cpp'),
       {
         year: this.year,
         date: this.date,
-        projectName: this.config.get('projectName'),
         projectPath: this.config.get('projectPath'),
         authorName: this.config.get('authorName'),
         authorEmail: this.config.get('authorEmail'),
+        appPriority: this.config.get('appPriority'),
+        appVersion: this.config.get('appVersion'),
+        projectDescription: this.config.get('projectDescription'),
         className: this.config.get('className'),
         parentClassName: this.config.get('parentClassName'),
         folder: this.config.get('folder')

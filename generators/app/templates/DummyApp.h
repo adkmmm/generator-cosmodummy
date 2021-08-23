@@ -1,17 +1,17 @@
-#ifndef COSMO_ITS_RUNTIME_DummyApp_H
-#define COSMO_ITS_RUNTIME_DummyApp_H
+#ifndef COSMO_ITS_RUNTIME_<%= appName %>_H
+#define COSMO_ITS_RUNTIME_<%= appName %>_H
 
 #include "ICosmoApp.h"
 
 /**
- * @class DummyApp
+ * @class <%= appName %>
  * @brief Cosmo Dummy Application 
  */
-class DummyApp : public ICosmoApp {
+class <%= appName %> : public ICosmoApp {
 public:
-    DummyApp();
+    <%= appName %>();
 
-    ~DummyApp() override;
+    ~<%= appName %>() override;
 
 public:
     AppVersion GetAppVersion() override;
@@ -36,4 +36,4 @@ public:
 };
 
 
-#endif //COSMO_ITS_RUNTIME_DummyApp_H
+#endif //COSMO_ITS_RUNTIME_<%= appName %>_H

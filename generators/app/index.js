@@ -16,14 +16,14 @@ module.exports = class extends Generator
     this.config.defaults
     (
       {
-        projectName: 'Dummy App',
+        appName: 'DummyApp',
         projectDescription: 'An app that does nothing',
         projectPath: 'CppProject',
         projectPackage: 'cpp-project',
         authorName: 'Alex Deng',
         authorEmail: 'alex@deng.com',
         appPriority: '0',
-        appVersion: '1.0.0',
+        appVersion: '0',
         messageListen: 'BSM',
         eventListen: 'GPS',
       }
@@ -67,7 +67,7 @@ module.exports = class extends Generator
 
     if (this.options.name)
     {
-      this.config.set('projectName', this.options.name) ;
+      this.config.set('appName', this.options.name) ;
       this.config.set('projectPath', this.options.name) ;
       this.config.set('projectPackage', this.options.name) ;
       this.interactive = false ;
@@ -112,9 +112,9 @@ module.exports = class extends Generator
       [
         {
           type: 'input',
-          name: 'projectName',
-          message: 'Project name:',
-          default: this.config.get('projectName')
+          name: 'appName',
+          message: 'App name:',
+          default: this.config.get('appName')
         },
         {
           type: 'input',
@@ -199,17 +199,49 @@ module.exports = class extends Generator
       (answers) =>
       {
         
-        this.config.set('projectName', answers['projectName']) ;
+        this.config.set('appName', answers['appName']) ;
         this.config.set('projectDescription', answers['projectDescription']) ;
         this.config.set('projectPath', answers['projectPath']) ;
         this.config.set('projectPackage', answers['projectPackage']) ;
         this.config.set('authorName', answers['authorName']) ;
         this.config.set('authorEmail', answers['authorEmail']) ;
-        this.config.set('appPriority', answers['appPriority']) ;
-        this.config.set('appVersion', answers['appVersion']) ;
         this.config.set('messageListen', answers['messageListen']) ;
         this.config.set('eventListen', answers['eventListen']) ;
-        
+        switch (answers['appPriority']) {
+          case 0:
+            this.config.set('appPriority', 'kLowest');
+            break;
+          case 1:
+            this.config.set('appPriority', 'kVeryLow');
+            break;
+          case 2:
+            this.config.set('appPriority', 'kLow');
+            break;
+          case 3:
+            this.config.set('appPriority', 'kNormal');
+            break;
+          case 4:
+            this.config.set('appPriority', 'kAboveNormal');
+            break;
+          case 5:
+            this.config.set('appPriority', 'kHigh');
+            break;
+          case 6:
+            this.config.set('appPriority', 'kVeryHigh');
+            break;
+          case 7:
+            this.config.set('appPriority', 'kHighest');
+            break;
+        };
+
+        switch (answers['appVersion']) {
+          case 0:
+            this.config.set('appVersion', 'kVersion_0_1');
+            break;
+          case 1:
+            this.config.set('appVersion', 'kVersion_1_0');
+            break;
+        }
       }
     ) ;
 
@@ -253,23 +285,28 @@ module.exports = class extends Generator
   {
     this.fs.copyTpl
     (
-      this.templatePath('dummy/CppProject/DummyApp.cpp'),
-      this.destinationPath(this.config.get('projectPath') + '/src/MyClass.cpp'),
+      this.templatePath('DummyApp.cpp'),
+      this.destinationPath(this.config.get('projectPath') + '/src/' + this.config.get('appName') + '.cpp'),
       {
         year: this.year,
         date: this.date,
-        projectName: this.config.get('projectName'),
+        appName: this.config.get('appName'),
         projectPath: this.config.get('projectPath'),
         authorName: this.config.get('authorName'),
         authorEmail: this.config.get('authorEmail'),
-        projectDescription: this.config.get('projectDescription')
+        projectDescription: this.config.get('projectDescription'),
+        appPriority: this.config.get('appPriority'),
+        appVersion: this.config.get('appVersion'),
       }
     ) ;
 
     this.fs.copyTpl
     (
-      this.templatePath('dummy/CppProject/DummyApp.h'),
-      this.destinationPath(this.config.get('projectPath') + '/src/DummyApp.h')
+      this.templatePath('DummyApp.h'),
+      this.destinationPath(this.config.get('projectPath') + '/src/' + this.config.get('appName') + '.h'),
+      {
+        appName: this.config.get('appName'),
+      }
     ) ;
 
   }
