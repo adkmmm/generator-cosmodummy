@@ -18,6 +18,7 @@ module.exports = class extends Generator
       {
         className: 'MyNewClass',
         parentClassName: '',
+        folder: '',
         headerOnly: false
       }
     ) ;
@@ -109,6 +110,7 @@ module.exports = class extends Generator
   {
 
     this.config.set('classNameLower', this.config.get('className').toLowerCase()) ;   
+    this.config.set('folder', (this.config.get('folder') == '') ? '' : (this.config.get('folder') + '/')) ;
   }
   
   default ()
@@ -150,8 +152,8 @@ module.exports = class extends Generator
 
     this.fs.copyTpl
     (
-      this.templatePath('include/MyClass.hpp'),
-      this.destinationPath('include/' + this.config.get('projectPath') + '/src/' + this.config.get('className') + '.hpp'),
+      this.templatePath('include/MyClass.h'),
+      this.destinationPath(this.config.get('projectPath') + '/src/' + this.config.get('className') + '.h'),
       {
         year: this.year,
         date: this.date,
@@ -161,6 +163,7 @@ module.exports = class extends Generator
         authorEmail: this.config.get('authorEmail'),
         className: this.config.get('className'),
         parentClassName: this.config.get('parentClassName'),
+        folder: this.config.get('folder')
       }
     ) ;
 
@@ -182,6 +185,7 @@ module.exports = class extends Generator
         authorEmail: this.config.get('authorEmail'),
         className: this.config.get('className'),
         parentClassName: this.config.get('parentClassName'),
+        folder: this.config.get('folder')
       }
     ) ;
 

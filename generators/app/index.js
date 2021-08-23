@@ -268,7 +268,7 @@ module.exports = class extends Generator
 
     this.fs.copyTpl
     (
-      this.templatePath('dummy/CppProject/DummyApp.cpp'),
+      this.templatePath('dummy/CppProject/DummyApp.h'),
       this.destinationPath(this.config.get('projectPath') + '/src/DummyApp.h')
     ) ;
 
