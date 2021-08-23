@@ -1,0 +1,24 @@
+#!/usr/bin/expect
+
+spawn yo cpp
+
+expect "Project name:"
+send "My Test Project\r"
+expect "Project description:"
+send "This is a test project.\r"
+expect "Project path:"
+send "TestProject\r"
+expect "Project package name:"
+send "test-project\r"
+expect "Author name:"
+send "Joe Tester\r"
+expect "Author e-mail:"
+send "joe@tester.com\r"
+expect "App Priority (0 to 7 from low to high):"
+send "0\r"
+expect "App Version (0 to 1):"
+send "1\r"
+expect "What message to listen to?"
+send "BSM\r"
+
+expect eof
