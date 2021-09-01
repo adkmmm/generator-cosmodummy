@@ -73,11 +73,15 @@ AppPriority <%= appName %>::GetPriority() {
  * 
  */
 bool <%= appName %>::Init() {
-    int res = m_handler->RegisterV2XMessages(GetPtr(), 0x4); // register BSM only
+    int res = m_handler->RegisterV2XMessages(GetPtr(), <%= messageListen %>); // register BSM only
     if(res != S_OK) {
         return false;
     }
 
+    int res = m_handler->RegisterEvents(GetPtr(), <%= eventListen %>); // resgister xxx
+    if(res != S_OK){
+        return false;
+    }
     return true;
 }
 

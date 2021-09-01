@@ -1,6 +1,6 @@
 {
     "name": "generator-cosmodummy",
-    "version": "0.0.5",
+    "version": "0.0.7",
     "description": "A dummy generator for COSMO C++ projects.",
     "homepage": "https://github.com/adkmmm/generator-cosmodummy",
     "bugs": "https://github.com/adkmmm/generator-cosmodummy/issues",
